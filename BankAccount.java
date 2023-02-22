@@ -15,7 +15,8 @@ public class BankAccount{
     public BankAccount(double checkingBalance, double savingsBalance){
         this.checkingBalance = checkingBalance;
         this.savingsBalance = savingsBalance;
-        this.accountNumber = generateRandomAccountNumber();
+        generateRandomAccountNumber();
+        this.accountNumber = getAccountNumber();
         numOfAccounts++;
         accountTotal = accountTotal + checkingBalance + savingsBalance;
     }
@@ -24,24 +25,24 @@ public class BankAccount{
     //     return randResult;
     // }
     
-    private String generateRandomAccountNumber(){
-        String randLetterAndNumberString = "123456789";
-        char randResult = randLetterAndNumberString.charAt(randGenerator.nextInt(10));
+    public void generateRandomAccountNumber(){
+        String randLetterAndNumberString = "0123456789";
         String accountNumberResult = "";
-        for(int id = 0; id <= 10; id++){
-            accountNumberResult = accountNumberResult + randResult;
+        for(int id = 0; id <= 11; id++){
+        	char randResult = randLetterAndNumberString.charAt(randGenerator.nextInt(10));
+        	accountNumberResult = accountNumberResult + randResult;
         }
-        return accountNumberResult;
+        setAccountNumber(accountNumberResult);
     }
     
     public String getAccountNumber(){
-        return accountNumber;
+    	return accountNumber;
     }
-    // public String setAccountNumber(){
-    //     accountNumber = generateRandomAccountNumber();
-    //     return accountNumber;
-
-    // }
+    
+    private void setAccountNumber(String newAccountNumber){
+         this.accountNumber = newAccountNumber;
+    }
+    
     // getters and setters
     public int getNumOfAccounts(){
         return numOfAccounts;
